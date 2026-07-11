@@ -1,45 +1,3 @@
-Skip to content
-IGsatvik
-IGsatvik
-Repository navigation
-Code
-Issues
-Pull requests
-Agents
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Commit ee683b6
-IGsatvik
-IGsatvik
-authored
-6 minutes ago
-·
-·
-Verified
-Update app.js
-main
-1 parent 
-ef6f40f
- commit 
-ee683b6
-1 file changed
-
--5
-Lines changed: 0 additions & 5 deletions
-File tree
-Filter files…
-app.js
-Search within code
- 
-‎app.js‎
--5
-Lines changed: 0 additions & 5 deletions
-Original file line number	Diff line number	Diff line change
-@@ -1,546 +1,541 @@
 /**
  * ==========================================
  * PORTFOLIO INTERACTIVE CORE ENGINE
@@ -585,10 +543,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
-0 commit comments
-Comments
-0
- (0)
-Comment
-You're not receiving notifications from this thread.
-
