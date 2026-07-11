@@ -250,12 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let x = startX; x < width - 20; x++) {
         let y = flatY;
 
-        // TDR Impedance Dip / Short Circuit fault reflection signature
-        if (x >= faultX && x <= faultX + 60) {
-          const progress = (x - faultX) / 60;
-          // Plot reflect curve (represents step recovery)
-          y = flatY + Math.sin(progress * Math.PI) * faultStepHeight;
-        }
+    
 
         // Add subtle oscilloscope noise/oscillation
         y += Math.sin((x + timeOffset) * 0.15) * 0.95;
