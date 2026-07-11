@@ -250,11 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let x = startX; x < width - 20; x++) {
         let y = flatY;
 
-        // Dynamic pulsed excitation step
-        if (x > 50 && x < 85) {
-          y = flatY - 30; // Impulse trigger
-        }
-
         // TDR Impedance Dip / Short Circuit fault reflection signature
         if (x >= faultX && x <= faultX + 60) {
           const progress = (x - faultX) / 60;
