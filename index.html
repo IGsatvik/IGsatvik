@@ -243,22 +243,21 @@
           <!-- Description Block -->
           <div class="featured-info">
             <span class="featured-tag">Key Featured Project</span>
-            <h3>IoT-Enabled Intelligent Cable Diagnostic System</h3>
+            <h3>IoT-Enabled Underground Cable Fault Detector</h3>
             <p class="featured-desc">
-              An industrial embedded systems breakthrough that detects and isolates open/short-circuit faults in underground cable systems. By utilizing **Time-Domain Reflectometry (TDR)** principles, the ESP32 calculates nanosecond propagation reflections, locating precise cable damage coordinates.
+              An IoT-enabled hardware prototype to automate the localization and reporting of underground cable faults. The system utilizes a series resistor matrix to simulate cable lengths, applying Ohm's Law to calculate fault distances based on voltage drops. Integrated an Arduino Uno and NodeMCU for data processing and cloud logging, an ACS712 current sensor and voltage sensor for load monitoring, and GSM/GPS modules (SIM800L/NEO-6M) to send real-time SMS alerts with precise coordinates to maintenance teams.
             </p>
             <ul class="highlight-points">
-              <li>Calculates structural anomalies with sub-meter coordinate precision.</li>
-              <li>Utilizes ESP32 ADC and high-frequency pulsed signals for pulse reflection capture.</li>
-              <li>Streams telemetry and diagnostic waveform arrays via secure MQTT brokers to AWS IoT dashboards.</li>
+              <li>Automated Triangulation: Eliminates manual line inspection by calculating fault distance and identifying the exact phase affected.</li>
+              <li>Sensors & Monitoring: ACS712 Current Sensor (5A range) and AC Voltage Sensor Module for real-time load analytics and anomaly detection.</li>
+              <li>Dual-Processor Architecture: Leverages the stability of Arduino for hardware interfacing paired with the network capabilities of the ESP platform for cloud telemetry.</li>
             </ul>
             
             <div class="tech-tags">
               <span class="tech-tag">C++</span>
-              <span class="tech-tag">ESP32 RTOS</span>
+              <span class="tech-tag">ESP32</span>
               <span class="tech-tag">Circuit Schematics</span>
-              <span class="tech-tag">MQTT</span>
-              <span class="tech-tag">Python Analytics</span>
+              <span class="tech-tag">Hardware Integration</span>
             </div>
 
             <div class="project-meta-links">
