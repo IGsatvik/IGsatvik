@@ -1,3 +1,45 @@
+Skip to content
+IGsatvik
+IGsatvik
+Repository navigation
+Code
+Issues
+Pull requests
+Agents
+Actions
+Projects
+Wiki
+Security and quality
+Insights
+Settings
+Commit ee683b6
+IGsatvik
+IGsatvik
+authored
+6 minutes ago
+·
+·
+Verified
+Update app.js
+main
+1 parent 
+ef6f40f
+ commit 
+ee683b6
+1 file changed
+
+-5
+Lines changed: 0 additions & 5 deletions
+File tree
+Filter files…
+app.js
+Search within code
+ 
+‎app.js‎
+-5
+Lines changed: 0 additions & 5 deletions
+Original file line number	Diff line number	Diff line change
+@@ -1,546 +1,541 @@
 /**
  * ==========================================
  * PORTFOLIO INTERACTIVE CORE ENGINE
@@ -117,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Draw subtle math axes
       ctx.strokeStyle = 'rgba(212, 175, 55, 0.04)';
       ctx.lineWidth = 1.5;
-      
+
       // X-Axis
       ctx.beginPath();
       ctx.moveTo(0, height / 2);
@@ -250,7 +292,16 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let x = startX; x < width - 20; x++) {
         let y = flatY;
 
-    
+        // Dynamic pulsed excitation step
+        if (x > 50 && x < 85) {
+          y = flatY - 30; // Impulse trigger
+        }
+        // TDR Impedance Dip / Short Circuit fault reflection signature
+        if (x >= faultX && x <= faultX + 60) {
+          const progress = (x - faultX) / 60;
+          // Plot reflect curve (represents step recovery)
+          y = flatY + Math.sin(progress * Math.PI) * faultStepHeight;
+        }
 
         // Add subtle oscilloscope noise/oscillation
         y += Math.sin((x + timeOffset) * 0.15) * 0.95;
@@ -258,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(x, y);
       }
       ctx.stroke();
-      
+
       // Reset Shadow properties
       ctx.shadowBlur = 0;
       ctx.shadowColor = 'transparent';
@@ -267,11 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
-      
+
       // Vertical dash at fault point
       ctx.moveTo(faultX + 30, 20);
       ctx.lineTo(faultX + 30, height - 20);
-      
+
       // Horizontal dash
       ctx.moveTo(20, flatY + faultStepHeight);
       ctx.lineTo(width - 20, flatY + faultStepHeight);
@@ -337,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxDash = 628;
     const targetSGPI = 8.95;
     const maxScale = 10.0;
-    
+
     const targetOffset = maxDash - (targetSGPI / maxScale) * maxDash;
 
     // Trigger SVG path transition
@@ -389,12 +440,12 @@ document.addEventListener('DOMContentLoaded', () => {
    * 5. MAGNETIC PHYSICS INTERACTIONS (CTAs & SOCIALS)
    * ========================================== */
   const magneticElements = document.querySelectorAll('.social-link, .btn-primary, .btn-secondary, .nav-link, .logo');
-  
+
   if (!isMobile) {
     magneticElements.forEach(el => {
       el.addEventListener('mousemove', (e) => {
         const bound = el.getBoundingClientRect();
-        
+
         // Calculate coordinate offsets relative to center of element
         const x = e.clientX - bound.left - bound.width / 2;
         const y = e.clientY - bound.top - bound.height / 2;
@@ -511,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Reset Inputs
         form.reset();
-        
+
         // Reset submit button state
         submitBtn.textContent = 'SEND TRANSMISSION';
         submitBtn.style.opacity = '1';
@@ -534,3 +585,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+0 commit comments
+Comments
+0
+ (0)
+Comment
+You're not receiving notifications from this thread.
+
