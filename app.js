@@ -228,9 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Title & Telemetry text inside screen
       ctx.fillStyle = 'rgba(241, 229, 172, 0.7)';
       ctx.font = '10px Courier New';
-      ctx.fillText('TDR WAVEFORM RESOLUTION', 15, 25);
-      ctx.fillText('REFLECTOMETER STATE: ACTIVE', 15, 40);
-      ctx.fillText('IMPEDANCE DETECT: 50 OHM', 15, 55);
+      ctx.fillText('VOLTAGE v/s DISTANCE', 15, 25);
+      ctx.fillText('DEVICE STATE: ACTIVE', 15, 40);
+      ctx.fillText('FAULT DETECT: 49.55 METERS', 15, 55);
 
       // Render TDR (Time-Domain Reflectometry) Waveform
       ctx.beginPath();
