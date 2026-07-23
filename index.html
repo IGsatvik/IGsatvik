@@ -1,581 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Premium Portfolio of B.Tech Computer Science & Mathematics Student. Specializing in CS Algorithms, High-Dimensional Mathematics, and IoT/Embedded Systems.">
-  <meta name="keywords" content="Portfolio, Computer Science, Mathematics, IoT, Embedded Systems, ESP32, C++, Linear Algebra, B.Tech">
-  <meta name="author" content="CS & Math Developer">
-  <title>Satvik Mishra | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | B.Tech Student - PSIT Kanpur</title>
   
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js for SGPA Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Background Ambient Glow & Orbs -->
-  <div class="bg-ambient-glow">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-  </div>
+  <!-- Ambient Glow Shapes -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
 
-  <!-- Premium Navigation Header -->
-  <header id="header">
-    <div class="container nav-container">
-      <a href="#" class="logo">
-        B.Tech AI&ML<span>'</span>29
-      </a>
-      
-      <!-- Hamburger Menu Button -->
-      <button class="menu-btn" id="menu-btn" aria-label="Toggle Navigation Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#" class="nav-link active" data-sec="hero">Home</a></li>
-        <li><a href="#academics" class="nav-link" data-sec="academics">Academics</a></li>
-        <li><a href="#hackathons" class="nav-link" data-sec="hackathons">Hackathons</a></li>
-        <li><a href="#projects" class="nav-link" data-sec="projects">Projects</a></li>
-        <li><a href="#skills" class="nav-link" data-sec="skills">Skills</a></li>
-        <li><a href="#connect" class="nav-link" data-sec="connect">Connect</a></li>
-      </ul>
-    </div>
+  <!-- Animated Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-brand">&lt;DEV /&gt;</div>
+    <nav class="nav-links">
+      <a href="#hero">Hero</a>
+      <a href="#sgpa">Academics</a>
+      <a href="#projects">Projects</a>
+      <a href="#hackathons">Hackathons</a>
+      <a href="#dsa">DSA</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- ==========================================
-   * SECTION: HERO
-   * ========================================== -->
-  <section class="hero-section" id="hero">
-    <!-- Mathematical & Code Network Canvas -->
-    <canvas class="hero-canvas" id="hero-canvas"></canvas>
-    
-    <div class="container">
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section reveal">
       <div class="hero-content">
-        <span class="hero-tagline animate-load-1">Satvik Mishra</span>
-        <h1 class="hero-title animate-load-2">
-          <span class="font-serif-italic">Game </span> Developer &amp; <span>Programmer.</span>
-        </h1>
-        <p class="hero-desc animate-load-3">
-          Engineered for game development, building high-performance architectures that push the boundaries of real-time rendering and computation. Expert at mapping complex mathematical abstractions into robust code, seamlessly integrating software with advanced hardware environments for low-latency, immersive experiences.
+        <div class="badge">B.Tech Student • PSIT Kanpur</div>
+        <h1 class="glitch-text" data-text="CREATIVE DEVELOPER">CREATIVE DEVELOPER</h1>
+        <div class="tagline-container">
+          <span class="tagline-static">&gt; </span>
+          <span id="typing-tagline" class="tagline-dynamic"></span>
+          <span class="cursor">|</span>
+        </div>
+        <p class="hero-subtext">
+          Building high-performance applications, exploring low-level systems, and solving complex algorithmic challenges.
         </p>
-        <div class="btn-group animate-load-3">
-          <a href="#projects" class="btn-primary" id="view-projects-btn">View Projects</a>
-          <a href="#connect" class="btn-secondary" id="resume-btn">Let's Connect</a>
+
+        <!-- Social Icons -->
+        <div class="hero-socials">
+          <a href="https://github.com" target="_blank" class="social-icon-btn" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-icon-btn" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-icon-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-   * SECTION: ACADEMIC METRICS (HIGHLIGHT HUB)
-   * ========================================== -->
-  <section class="metrics-section reveal" id="academics">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Academic Milestones</span>
-        <h2 class="section-title">The Highlight Hub</h2>
+    <!-- SGPA TRACKER SECTION -->
+    <section id="sgpa" class="glass-card reveal">
+      <div class="section-header">
+        <h2 class="section-title">Academic Metrics</h2>
+        <span class="section-subtitle">SGPA Progression Dashboard</span>
       </div>
 
-      <div class="academic-grid">
-        <!-- SGPI Dashboard Gauge Card -->
-        <div class="glass-card sgpi-container">
-          <div class="sgpi-gauge">
-            <svg viewBox="0 0 220 220">
-              <defs>
-                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#F1E5AC" />
-                  <stop offset="100%" stop-color="#D4AF37" />
-                </linearGradient>
-              </defs>
-              <!-- Background Circle Track -->
-              <circle class="sgpi-track" cx="110" cy="110" r="100" />
-              <!-- Progress Arc Circle -->
-              <circle class="sgpi-progress" id="sgpi-progress-circle" cx="110" cy="110" r="100" />
-            </svg>
-            <div class="sgpi-value-box">
-              <span class="sgpi-number" id="sgpi-counter" data-target="8.95">0.00</span>
-              <span class="sgpi-label">Cumulative SGPI</span>
-            </div>
+      <div class="sgpa-grid">
+        <div class="sgpa-cards">
+          <div class="sgpa-stat-card">
+            <span class="sem-label">Semester 1</span>
+            <span class="sgpa-val">8.60</span>
           </div>
-          <p class="sgpi-description">
-            Consistently leading with a strong focus on <span>academic excellence</span>, maintaining a rigid work ethic across algorithmic complexity and physical sciences.
-          </p>
+          <div class="sgpa-stat-card">
+            <span class="sem-label">Semester 2</span>
+            <span class="sgpa-val">8.75</span>
+          </div>
+          <div class="sgpa-stat-card">
+            <span class="sem-label">Semester 3</span>
+            <span class="sgpa-val">8.95</span>
+          </div>
+          <div class="sgpa-stat-card highlight">
+            <span class="sem-label">Cumulative CGPA</span>
+            <span class="sgpa-val">8.77</span>
+          </div>
         </div>
-
-        <!-- Academic Focus & Coursework Core -->
-        <div class="academic-info">
-          <!-- Focus Cards -->
-          <div class="academic-focus-grid">
-            <div class="glass-card focus-card">
-              <div class="focus-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-              </div>
-              <h4>Computer Science</h4>
-              <p>Algorithms, Automata Theory, Operating Systems &amp; Compilers.</p>
-            </div>
-            <div class="glass-card focus-card">
-              <div class="focus-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </div>
-              <h4>Mathematics</h4>
-              <p>Linear Algebra, Cryptography, Group Theory &amp; Real Analysis.</p>
-            </div>
-            <div class="glass-card focus-card">
-              <div class="focus-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-              </div>
-              <h4>Hardware / IoT</h4>
-              <p>Microcontrollers, ESP32 Architecture, Signals &amp; Circuit Systems.</p>
-            </div>
-          </div>
-
-          <!-- Key Coursework list -->
-          <div class="glass-card coursework-box">
-            <h4>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
-              Advanced Academic Coursework
-            </h4>
-            <div class="coursework-grid">
-              <div class="coursework-item">Linear Algebra &amp; Vector Spaces</div>
-              <div class="coursework-item">Abstract Algebra &amp; Group Theory</div>
-              <div class="coursework-item">Real Analysis &amp; Topology</div>
-              <div class="coursework-item">Modern Cryptography &amp; Number Theory</div>
-              <div class="coursework-item">Embedded Firmware &amp; RTOS</div>
-              <div class="coursework-item">Data Structures &amp; Complexity</div>
-              <div class="coursework-item">Signal Processing &amp; Wavelets</div>
-              <div class="coursework-item">Discrete Mathematics &amp; Graphs</div>
-            </div>
-          </div>
+        <div class="chart-container">
+          <canvas id="sgpaChart"></canvas>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-   * SECTION: HACKATHONS & COMPETITIONS
-   * ========================================== -->
-  <section class="hackathons-section reveal" id="hackathons">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Competitive Track</span>
-        <h2 class="section-title">Hackathons &amp; Achievements</h2>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="reveal">
+      <div class="section-header center">
+        <h2 class="section-title">Featured Projects</h2>
+        <span class="section-subtitle">Hardware, Web & Systems Architecture</span>
       </div>
 
-      <div class="timeline">
-        <!-- Timeline Item 1 -->
-        <div class="timeline-item">
-          <div class="timeline-node"></div>
-          <span class="timeline-badge">PROTECH 2K26 Winner</span>
-          <div class="glass-card timeline-card">
-            <h3>Protech 2k26</h3>
-            <div class="timeline-project">Underground Cable Fault Detection System</div>
-            <div class="timeline-role">Core Programmer &amp; IoT Developer</div>
-            <p class="timeline-desc">
-              Engineered an automated cable fault detection system that handles real-time distance pinpointing. Implemented ESP32 and Arduino firmware to process sensor data for real-time fault distance calculation in underground power cables.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">C++</span>
-              <span class="tech-tag">ESP32</span>
-              <span class="tech-tag">Arduino</span>
-              <span class="tech-tag">Hardware Integration</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Timeline Item 2 -->
-        <div class="timeline-item">
-          <div class="timeline-node"></div>
-          <span class="timeline-badge">1st Runner Up</span>
-          <div class="glass-card timeline-card">
-            <h3>National Math Modeling Competition</h3>
-            <div class="timeline-project">Fractal-Based Cryptographic Encryption</div>
-            <div class="timeline-role">Mathematical Cryptologist</div>
-            <p class="timeline-desc">
-              Designed a symmetric security compiler using high-dimensional chaotic matrices and Mandelbrot fractals. Built a prototype compiler to test key space collision resistance.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">NumPy</span>
-              <span class="tech-tag">SageMath</span>
-              <span class="tech-tag">Cryptanalysis</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Timeline Item 3 -->
-        <div class="timeline-item">
-          <div class="timeline-node"></div>
-          <span class="timeline-badge">Top 10 Finalist</span>
-          <div class="glass-card timeline-card">
-            <h3>National Embedded Systems Challenge</h3>
-            <div class="timeline-project">Self-Healing Agricultural IoT Node</div>
-            <div class="timeline-role">Hardware Systems Architect</div>
-            <p class="timeline-desc">
-              Created an ultra-low power agricultural node that runs localized polynomial regressions to forecast soil hydration depletion, transmitting signals via long-range telemetry.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">C++</span>
-              <span class="tech-tag">Arduino Core</span>
-              <span class="tech-tag">LoRaWAN</span>
-              <span class="tech-tag">Low-Power Modes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-   * SECTION: TECHNICAL PROJECTS PORTFOLIO
-   * ========================================== -->
-  <section class="projects-section reveal" id="projects">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Technical Portfolio</span>
-        <h2 class="section-title">Featured Creations</h2>
+      <!-- Category Filter -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="hardware">Hardware / Embedded</button>
+        <button class="filter-btn" data-filter="web">Web Development</button>
+        <button class="filter-btn" data-filter="dsa">Algorithms</button>
       </div>
 
-      <!-- Highlight Project Block -->
-      <div class="featured-project-container">
-        <div class="glass-card featured-card">
-          <!-- Description Block -->
-          <div class="featured-info">
-            <span class="featured-tag">Key Featured Project</span>
-            <h3>IoT-Enabled Underground Cable Fault Detector</h3>
-            <p class="featured-desc">
-              An IoT-enabled hardware prototype to automate the localization and reporting of underground cable faults. The system utilizes a series resistor matrix to simulate cable lengths, applying Ohm's Law to calculate fault distances based on voltage drops. Integrated an Arduino Uno and NodeMCU for data processing and cloud logging, an ACS712 current sensor and voltage sensor for load monitoring, and GSM/GPS modules (SIM800L/NEO-6M) to send real-time SMS alerts with precise coordinates to maintenance teams.
-            </p>
-            <ul class="highlight-points">
-              <li>Automated Triangulation: Eliminates manual line inspection by calculating fault distance and identifying the exact phase affected.</li>
-              <li>Sensors & Monitoring: ACS712 Current Sensor (5A range) and AC Voltage Sensor Module for real-time load analytics and anomaly detection.</li>
-              <li>Dual-Processor Architecture: Leverages the stability of Arduino for hardware interfacing paired with the network capabilities of the ESP platform for cloud telemetry.</li>
-            </ul>
-            
-            <div class="tech-tags">
-              <span class="tech-tag">C++</span>
-              <span class="tech-tag">ESP32</span>
-              <span class="tech-tag">Circuit Schematics</span>
-              <span class="tech-tag">Hardware Integration</span>
-            </div>
-
-            <div class="project-meta-links">
-              <a href="#" class="project-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub Repository
-              </a>
-              <a href="#" class="project-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                Interactive Dashboard
-              </a>
-            </div>
-          </div>
-
-          <!-- Diagnostic Interactive Screen Visualizer -->
-          <div class="featured-visual">
-            <canvas class="circuit-canvas" id="circuit-canvas"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary Projects Grid -->
       <div class="projects-grid">
         <!-- Project 1 -->
-        <div class="glass-card project-card">
-          <div>
-            <h4>Chaotic Cryptosystem Compiler</h4>
-            <p>
-              An absolute math-heavy security compiler built in C++ that encrypts raw binary packets using standard systems of Lorenz and Rossler double-scroll chaotic differential attractors.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">C++</span>
-              <span class="tech-tag">CMake</span>
-              <span class="tech-tag">Qt5</span>
-              <span class="tech-tag">Numerical Integration</span>
-            </div>
+        <div class="project-card glass-card" data-category="hardware">
+          <div class="project-tag">Embedded Systems</div>
+          <h3>ESP32 Cable Diagnostic System</h3>
+          <p>Advanced diagnostic system for rapid continuity, wire-mapping, and fault-detection across complex wiring harnesses.</p>
+          <div class="tech-stack">
+            <span>ESP32</span>
+            <span>C++</span>
+            <span>Embedded C</span>
+            <span>OLED</span>
           </div>
-          <div class="project-meta-links">
-            <a href="#" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              GitHub Code
-            </a>
-          </div>
+          <a href="#" class="project-link">View Repository &rarr;</a>
         </div>
 
         <!-- Project 2 -->
-        <div class="glass-card project-card">
-          <div>
-            <h4>CUDA High-Dimensional Math Engine</h4>
-            <p>
-              A high-performance linear algebra execution library built to compute multi-dimensional matrix decompositions (SVD, QR, and Eigendecomposition) natively accelerated by custom GPU CUDA cores.
-            </p>
-            <div class="tech-tags">
-              <span class="tech-tag">C++</span>
-              <span class="tech-tag">CUDA</span>
-              <span class="tech-tag">OpenMP</span>
-              <span class="tech-tag">Memory Pools</span>
-            </div>
+        <div class="project-card glass-card" data-category="dsa">
+          <div class="project-tag">Theory & Math</div>
+          <h3>Abstract Algebra & Group Visualizer</h3>
+          <p>Interactive playground to simulate algebraic structures, group operations, and matrix transformations visually.</p>
+          <div class="tech-stack">
+            <span>JavaScript</span>
+            <span>Canvas API</span>
+            <span>MathJax</span>
           </div>
-          <div class="project-meta-links">
-            <a href="#" class="project-link">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              GitHub Code
-            </a>
+          <a href="#" class="project-link">View Repository &rarr;</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass-card" data-category="web">
+          <div class="project-tag">Web Application</div>
+          <h3>Futuristic Academic Tracker</h3>
+          <p>Real-time portal to compute SGPA, track modular course progression, and schedule smart reminders.</p>
+          <div class="tech-stack">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>Chart.js</span>
+            <span>ES6</span>
+          </div>
+          <a href="#" class="project-link">View Repository &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HACKATHONS SECTION -->
+    <section id="hackathons" class="reveal">
+      <div class="section-header center">
+        <h2 class="section-title">Hackathon Milestones</h2>
+        <span class="section-subtitle">Competitive Coding & Rapid Prototyping</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="event-date">March 2026</span>
+            <h3>InnovateX Hackathon</h3>
+            <p class="achievement">🏆 1st Runner Up</p>
+            <p>Developed an automated hardware diagnostic bench using ESP32 platforms within a 24-hour crunch period.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="event-date">November 2025</span>
+            <h3>PSIT TechFest CodeSprint</h3>
+            <p class="achievement">🥇 Best Hardware-Software Integration</p>
+            <p>Created a low-latency telemetry reader for custom microcontrollers and web-based dashboard visualization.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-   * SECTION: SKILLS INVENTORY
-   * ========================================== -->
-  <section class="skills-section reveal" id="skills">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Technological Matrix</span>
-        <h2 class="section-title">Skills Inventory</h2>
+    <!-- DSA PROBLEMS SECTION -->
+    <section id="dsa" class="glass-card reveal">
+      <div class="section-header">
+        <h2 class="section-title">Algorithmic Mastery</h2>
+        <span class="section-subtitle">Data Structures & Problem Solving</span>
       </div>
 
-      <div class="skills-grid">
-        <!-- Category 1 -->
-        <div class="glass-card skills-category">
-          <h3>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Languages &amp; Software
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">C++ (OOP &amp; Core)</span>
-                <span class="skill-value">95%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="95"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Python (Scientific)</span>
-                <span class="skill-value">90%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="90"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Embedded Scripting (Lua / C)</span>
-                <span class="skill-value">85%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">HTML5 / CSS3 / ES6 JS</span>
-                <span class="skill-value">80%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="80"></div></div>
-            </div>
+      <div class="dsa-overview">
+        <div class="counter-box">
+          <span class="counter-number" data-target="450">0</span>
+          <span class="counter-label">Problems Solved</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-number" data-target="18">0</span>
+          <span class="counter-label">Topics Mastered</span>
+        </div>
+      </div>
+
+      <div class="progress-bars">
+        <div class="progress-item">
+          <div class="progress-info">
+            <span>Arrays & Hashing</span>
+            <span>90%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" style="width: 90%;"></div>
           </div>
         </div>
 
-        <!-- Category 2 -->
-        <div class="glass-card skills-category">
-          <h3>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Hardware &amp; IoT Architecture
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">ESP32 &amp; Arduino Microcontrollers</span>
-                <span class="skill-value">92%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="92"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Circuit Schematics &amp; Prototyping</span>
-                <span class="skill-value">88%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="88"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Wireless Protocols (MQTT, LoRa)</span>
-                <span class="skill-value">85%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Time-Domain Signal Capture</span>
-                <span class="skill-value">80%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="80"></div></div>
-            </div>
+        <div class="progress-item">
+          <div class="progress-info">
+            <span>Group Theory & Abstract Algebra</span>
+            <span>85%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" style="width: 85%;"></div>
           </div>
         </div>
 
-        <!-- Category 3 -->
-        <div class="glass-card skills-category">
-          <h3>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="M9.17 14.83 4.93 19.07"/></svg>
-            Mathematical Domain
-          </h3>
-          <div class="skills-list">
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Linear Algebra &amp; Eigendecompositions</span>
-                <span class="skill-value">95%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="95"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Abstract Algebra (Group &amp; Ring structures)</span>
-                <span class="skill-value">85%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Differential Equations &amp; Chaotic Systems</span>
-                <span class="skill-value">88%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="88"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-info">
-                <span class="skill-name">Numerical Integration &amp; Simulations</span>
-                <span class="skill-value">90%</span>
-              </div>
-              <div class="skill-track"><div class="skill-bar" data-val="90"></div></div>
-            </div>
+        <div class="progress-item">
+          <div class="progress-info">
+            <span>Trees & Graphs</span>
+            <span>75%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" style="width: 75%;"></div>
+          </div>
+        </div>
+
+        <div class="progress-item">
+          <div class="progress-info">
+            <span>Dynamic Programming</span>
+            <span>65%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-fill" style="width: 65%;"></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================
-   * SECTION: CONTACT & CONNECT
-   * ========================================== -->
-  <section class="contact-section reveal" id="connect">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Communications</span>
-        <h2 class="section-title">Let's Connect</h2>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="glass-card reveal">
+      <div class="section-header center">
+        <h2 class="section-title">Initiate Contact</h2>
+        <span class="section-subtitle">Have a project, opportunity, or idea? Let's connect.</span>
       </div>
 
-      <div class="contact-layout">
-        <!-- Contact Details Left -->
-        <div class="contact-info-wrap">
-          <div class="contact-heading">
-            <h3>Initiate a Link.</h3>
-            <p>
-              I am open to discussions on hardware architecture projects, game development, high-performance mathematics computing, or web developement. Let's build.
-            </p>
-          </div>
-
-          <div class="contact-details">
-            <!-- Email -->
-            <a href="mailto:satvikmishra.shubh@gmail.com" class="contact-method">
-              <div class="method-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 4.227v-8.455l4.623 4.228zm.947.867l4.43 4.054 4.43-4.054 5.926 5.421h-20.712l5.926-5.421zm10.754-.867l4.623-4.228v8.455l-4.623-4.227zm-4.324-1.029l-12-10.971h24l-12 10.971z"/></svg>
-              </div>
-              <div class="method-text">
-                <h5></h5>
-                <p>Email</p>
-              </div>
-            </a>
-
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/satvik-mishra-b0b932419/" target="_blank" rel="noopener" class="contact-method">
-              <div class="method-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              </div>
-              <div class="method-text">
-                <h5></h5>
-                <p>LinkedIn</p>
-              </div>
-            </a>
-
-            <!-- GitHub -->
-            <a href="https://github.com/IGsatvik" target="_blank" rel="noopener" class="contact-method">
-              <div class="method-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              </div>
-              <div class="method-text">
-                <h5></h5>
-                <p>GitHub</p>
-              </div>
-            </a>
-          </div>
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="form-group">
+          <input type="text" id="name" required placeholder=" " />
+          <label for="name">Your Name</label>
+          <span class="error-msg">Please enter your name.</span>
         </div>
 
-        <!-- Dynamic Form Right -->
-        <div class="glass-card contact-form">
-          <!-- Glassmorphic Success Overlay -->
-          <div class="success-overlay" id="success-overlay">
-            <div class="success-content">
-              <div class="success-icon-box">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
-              </div>
-              <h4>Link Established.</h4>
-              <p>Transmission successful. I will respond to your protocol request shortly.</p>
-            </div>
-          </div>
-
-          <form id="portfolio-form" novalidate>
-            <div class="form-grid">
-              <div class="form-group">
-                <input type="text" id="form-name" class="form-input" placeholder=" " required>
-                <label for="form-name" class="form-label">Identifier (Name)</label>
-              </div>
-              <div class="form-group">
-                <input type="email" id="form-email" class="form-input" placeholder=" " required>
-                <label for="form-email" class="form-label">Email Address</label>
-              </div>
-            </div>
-            <div class="form-group full-width" style="margin-bottom: 2rem;">
-              <input type="text" id="form-subject" class="form-input" placeholder=" " required>
-              <label for="form-subject" class="form-label">Link Subject</label>
-            </div>
-            <div class="form-group full-width" style="margin-bottom: 2rem;">
-              <textarea id="form-message" class="form-input" placeholder=" " required></textarea>
-              <label for="form-message" class="form-label">Telemetry Transmission (Message)</label>
-            </div>
-            
-            <button type="submit" class="btn-primary btn-submit" id="submit-btn">Send Transmission</button>
-          </form>
+        <div class="form-group">
+          <input type="email" id="email" required placeholder=" " />
+          <label for="email">Your Email</label>
+          <span class="error-msg">Please enter a valid email address.</span>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ==========================================
-   * MINIMALIST FOOTER
-   * ========================================== -->
+        <div class="form-group">
+          <textarea id="message" rows="4" required placeholder=" "></textarea>
+          <label for="message">Message</label>
+          <span class="error-msg">Message cannot be empty.</span>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>Send Transmission</span>
+          <div class="btn-glow"></div>
+        </button>
+        <div id="form-status" class="form-status"></div>
+      </form>
+    </section>
+
+  </main>
+
   <footer>
-    <div class="container footer-container">
-      <div class="footer-credits">
-        &copy;2026 <span>IGsatvik</span>. All rights reserved.
-      </div>
-      
-      <div class="social-links">
-        <a href="https://github.com/IGsatvik" target="_blank" rel="noopener" class="social-link" aria-label="GitHub Portal">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/satvik-mishra-b0b932419/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn Profile">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        </a>
-        <a href="mailto:satvikmishra.shubh@gmail.com" class="social-link" aria-label="Email Node">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 4.227v-8.455l4.623 4.228zm.947.867l4.43 4.054 4.43-4.054 5.926 5.421h-20.712l5.926-5.421zm10.754-.867l4.623-4.228v8.455l-4.623-4.227zm-4.324-1.029l-12-10.971h24l-12 10.971z"/></svg>
-        </a>
-      </div>
-    </div>
+    <p>&copy; 2026 Student Portfolio • PSIT Kanpur. Built with HTML, CSS & Vanilla JS.</p>
   </footer>
 
-  <!-- JavaScript Code -->
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
