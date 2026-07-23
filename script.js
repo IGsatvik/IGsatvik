@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
       particlesArray[i].update();
       particlesArray[i].draw();
 
-      // Connect nearby particles with subtle lines
       for (let j = i; j < particlesArray.length; j++) {
         const dx = particlesArray[i].x - particlesArray[j].x;
         const dy = particlesArray[i].y - particlesArray[j].y;
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let typeSpeed = isDeleting ? 40 : 80;
 
     if (!isDeleting && charIndex === currentPhrase.length) {
-      typeSpeed = 2000; // Pause at end of sentence
+      typeSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
@@ -119,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 3. CHART.JS SGPA GRAPH ---
   const chartCtx = document.getElementById('sgpaChart').getContext('2d');
   
-  // Gradient fill for chart line
   const gradient = chartCtx.createLinearGradient(0, 0, 0, 200);
   gradient.addColorStop(0, 'rgba(0, 242, 254, 0.4)');
   gradient.addColorStop(1, 'rgba(0, 242, 254, 0.0)');
@@ -199,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Trigger counters when DSA section is in view
     const dsaSection = document.getElementById("dsa");
     if (dsaSection) {
       const dsaTop = dsaSection.getBoundingClientRect().top;
@@ -225,8 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Check immediately and bind listeners to prevent hidden content on initial load
   window.addEventListener("scroll", handleScroll);
-  handleScroll(); // Trigger initial check
+  window.addEventListener("load", handleScroll);
+  handleScroll();
 
   // --- 6. CONTACT FORM VALIDATION ---
   const contactForm = document.getElementById("contact-form");
@@ -240,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email");
     const messageInput = document.getElementById("message");
 
-    // Validate Name
     if (nameInput.value.trim() === "") {
       nameInput.parentElement.classList.add("invalid");
       isValid = false;
@@ -248,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nameInput.parentElement.classList.remove("invalid");
     }
 
-    // Validate Email
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (!emailInput.value.match(emailPattern)) {
       emailInput.parentElement.classList.add("invalid");
@@ -257,7 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
       emailInput.parentElement.classList.remove("invalid");
     }
 
-    // Validate Message
     if (messageInput.value.trim() === "") {
       messageInput.parentElement.classList.add("invalid");
       isValid = false;
