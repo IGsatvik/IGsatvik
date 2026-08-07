@@ -234,6 +234,7 @@ body {
   fill: var(--primary-cyan);
 }
 
+/* Ripple effect on social buttons */
 .social-icon-btn::after {
   content: '';
   position: absolute;
@@ -603,7 +604,7 @@ footer {
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .navbar { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
+  .nav-links { display: none; } /* Could be expanded to mobile menu */
   .glitch-text { font-size: 2.2rem; }
   .sgpa-grid { grid-template-columns: 1fr; }
   .timeline::after { left: 31px; }
