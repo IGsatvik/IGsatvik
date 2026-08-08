@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS — An Immersive 3D Journey</title>
+  <meta name="description" content="An interactive 3D scroll experience built with Three.js and GSAP. Journey through a futuristic crystalline universe." />
+
+  <!-- ── Google Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- ── Tailwind CSS CDN ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            mono:   ['Space Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- ── Three.js r134 ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- ── GSAP + ScrollTrigger ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- ── Custom Styles ── -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+═══════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="loading-logo">NEXUS</div>
+  <div class="loading-bar-track">
+    <div class="loading-bar-fill" id="loading-bar"></div>
+  </div>
+  <div class="loading-text" id="loading-text">INITIALIZING SCENE</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FIXED HUD — Top Navigation
+═══════════════════════════════════════════ -->
+<div id="progress-bar"></div>
+
+<header id="hud-top">
+  <div class="logo">NEXUS</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a onclick="scrollToSection(0)">Home</a></li>
+      <li><a onclick="scrollToSection(1)">About</a></li>
+      <li><a onclick="scrollToSection(2)">Features</a></li>
+      <li><a onclick="scrollToSection(3)">Data</a></li>
+      <li><a onclick="scrollToSection(4)">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     CHAPTER DOT INDICATOR (right side)
+═══════════════════════════════════════════ -->
+<div id="chapter-indicator">
+  <div class="chapter-dot active" onclick="scrollToSection(0)" title="Home"></div>
+  <div class="chapter-dot"        onclick="scrollToSection(1)" title="About"></div>
+  <div class="chapter-dot"        onclick="scrollToSection(2)" title="Features"></div>
+  <div class="chapter-dot"        onclick="scrollToSection(3)" title="Data"></div>
+  <div class="chapter-dot"        onclick="scrollToSection(4)" title="Contact"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL HINT (bottom center)
+═══════════════════════════════════════════ -->
+<div id="scroll-hint">
+  <div class="scroll-mouse">
+    <div class="scroll-wheel"></div>
+  </div>
+  <span class="scroll-text">Scroll to Explore</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO TITLE (fixed, fades out on scroll)
+═══════════════════════════════════════════ -->
+<div id="hero-title">
+  <div class="hero-main">NEXUS</div>
+  <div class="hero-sub">Journey Beyond the Horizon</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     THREE.JS CANVAS (fixed background)
+═══════════════════════════════════════════ -->
+<canvas id="three-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL CONTAINER — 5 sticky sections
+     Total height = 600vh (5 chapters)
+═══════════════════════════════════════════ -->
+<div id="scroll-container">
+
+  <!-- ── Section 0: Hero spacer (camera start) ── -->
+  <div class="scene-section" data-section="0" style="height:100vh;"></div>
+
+  <!-- ── Section 1: About ── -->
+  <div class="scene-section" data-section="1">
+    <div class="panel" id="panel-1">
+      <div class="glass-card">
+        <div class="chapter-label">01 — About</div>
+        <div class="accent-line"></div>
+        <h2 class="text-3xl font-bold leading-tight mb-4"
+            style="background:linear-gradient(135deg,#fff,#a5f3fc);
+                   -webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;
+                   background-clip:text;">
+          The Architecture<br/>of Tomorrow
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">
+          NEXUS is a next-generation computational framework built at the intersection of
+          quantum mechanics and artificial cognition. Each crystal node in this field represents
+          a living data structure — breathing, adapting, evolving.
+        </p>
+        <div class="flex flex-wrap gap-1 mb-5">
+          <span class="badge"><span class="badge-dot"></span>Quantum Core</span>
+          <span class="badge"><span class="badge-dot"></span>Neural Mesh</span>
+          <span class="badge"><span class="badge-dot"></span>Adaptive AI</span>
+          <span class="badge"><span class="badge-dot"></span>Real-time</span>
+        </div>
+        <button class="cta-btn">Discover More <span class="cta-arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2: Features (right-aligned) ── -->
+  <div class="scene-section" data-section="2" style="justify-content:flex-end;">
+    <div class="panel panel-right" id="panel-2">
+      <div class="glass-card">
+        <div class="chapter-label">02 — Capabilities</div>
+        <div class="accent-line" style="background:linear-gradient(90deg,#a855f7,#f472b6);"></div>
+        <h2 class="text-3xl font-bold leading-tight mb-5"
+            style="background:linear-gradient(135deg,#fff,#e879f9);
+                   -webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;
+                   background-clip:text;">
+          Infinite<br/>Possibilities
+        </h2>
+
+        <div class="feature-item">
+          <div class="feature-icon fi-cyan">⬡</div>
+          <div>
+            <div class="text-sm font-semibold text-slate-200 mb-1">Crystalline Memory</div>
+            <div class="text-xs text-slate-500 leading-relaxed">
+              Persistent holographic data storage across 12-dimensional manifolds with zero-latency retrieval.
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon fi-purple">◈</div>
+          <div>
+            <div class="text-sm font-semibold text-slate-200 mb-1">Entangled Processing</div>
+            <div class="text-xs text-slate-500 leading-relaxed">
+              Quantum-entangled threads that process in superposition and collapse deterministically on demand.
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon fi-pink">✦</div>
+          <div>
+            <div class="text-sm font-semibold text-slate-200 mb-1">Sentient Networks</div>
+            <div class="text-xs text-slate-500 leading-relaxed">
+              Self-organizing neural topologies that learn, prune, and rewire autonomously in real-time.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 3: Stats / Data (left) ── -->
+  <div class="scene-section" data-section="3">
+    <div class="panel" id="panel-3">
+      <div class="glass-card">
+        <div class="chapter-label">03 — Metrics</div>
+        <div class="accent-line" style="background:linear-gradient(90deg,#00f5ff,#3b82f6);"></div>
+        <h2 class="text-3xl font-bold leading-tight mb-4"
+            style="background:linear-gradient(135deg,#fff,#93c5fd);
+                   -webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;
+                   background-clip:text;">
+          Powered by<br/>Pure Data
+        </h2>
+        <p class="text-slate-400 text-sm leading-relaxed mb-2">
+          Real-time telemetry from the NEXUS cluster, visualized across the crystalline field surrounding you.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Dimensions</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">4.2E</div>
+            <div class="stat-label">Exaflops</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">0ms</div>
+            <div class="stat-label">Latency</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">99.9%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 4: Contact (right) ── -->
+  <div class="scene-section" data-section="4" style="justify-content:flex-end;">
+    <div class="panel panel-right" id="panel-4">
+      <div class="glass-card">
+        <div class="chapter-label">04 — Contact</div>
+        <div class="accent-line" style="background:linear-gradient(90deg,#f472b6,#a855f7);"></div>
+        <h2 class="text-3xl font-bold leading-tight mb-4"
+            style="background:linear-gradient(135deg,#fff,#f9a8d4);
+                   -webkit-background-clip:text;
+                   -webkit-text-fill-color:transparent;
+                   background-clip:text;">
+          Enter the<br/>Network
+        </h2>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Join the NEXUS collective. Your signal will propagate across the field.
+        </p>
+        <input  id="contact-name"  type="text"  class="contact-input" placeholder="Your identifier (name)" />
+        <input  id="contact-email" type="email" class="contact-input" placeholder="Quantum address (email)" />
+        <textarea id="contact-msg" class="contact-input" placeholder="Transmit your signal (message)"></textarea>
+        <button id="contact-submit"
+                class="cta-btn"
+                style="width:100%; justify-content:center;"
+                onclick="handleContactSubmit(this)">
+          Transmit Signal <span class="cta-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /scroll-container -->
+
+<!-- ── Custom JS (loaded last so DOM is ready) ── -->
+<script src="main.js"></script>
+
+</body>
+</html>

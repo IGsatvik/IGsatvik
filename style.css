@@ -1,0 +1,456 @@
+/* ================================================================
+   NEXUS — style.css
+   Custom styles for the 3D scroll experience.
+   CDN dependencies (Tailwind, Google Fonts) are loaded in index.html.
+================================================================ */
+
+/* ── 1. Reset & Box Model ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── 2. Scrollbar ─────────────────────────────────────────── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #0a0a1a;
+}
+html::-webkit-scrollbar         { width: 6px; }
+html::-webkit-scrollbar-track   { background: #0a0a1a; }
+html::-webkit-scrollbar-thumb   {
+  background: linear-gradient(180deg, #00f5ff, #a855f7);
+  border-radius: 3px;
+}
+
+/* ── 3. Base Body ─────────────────────────────────────────── */
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #050510;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+/* ── 4. Three.js Canvas (fixed background) ────────────────── */
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── 5. Scroll Container ──────────────────────────────────── */
+#scroll-container {
+  position: relative;
+  z-index: 10;
+  height: 600vh; /* 5 sections × 100vh + travel room */
+}
+
+/* ── 6. Sticky Section Wrappers ───────────────────────────── */
+.scene-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+/* ── 7. Panel Base ────────────────────────────────────────── */
+.panel {
+  pointer-events: auto;
+  opacity: 0;                   /* GSAP animates this in */
+  transform: translateY(40px);  /* GSAP animates this in */
+  max-width: 520px;
+  margin-left: 8vw;
+}
+
+/* Right-aligned variant (sections 2 & 4) */
+.panel-right {
+  margin-left: auto;
+  margin-right: 8vw;
+}
+
+/* ── 8. Glassmorphic Card ─────────────────────────────────── */
+.glass-card {
+  background: rgba(10, 10, 30, 0.55);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.06),
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* ── 9. Accent Divider Line ───────────────────────────────── */
+.accent-line {
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #00f5ff, #a855f7);
+  margin-bottom: 1.5rem;
+}
+
+/* ── 10. Chapter Label ────────────────────────────────────── */
+.chapter-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #00f5ff;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── 11. Badges ───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 245, 255, 0.08);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  font-size: 0.78rem;
+  font-family: 'Space Mono', monospace;
+  color: #a5f3fc;
+  margin: 0.25rem;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f5ff;
+  box-shadow: 0 0 6px #00f5ff;
+  animation: pdot 2s infinite;
+}
+
+@keyframes pdot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* ── 12. CTA Button ───────────────────────────────────────── */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.12), rgba(168, 85, 247, 0.12));
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  color: #e2e8f0;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.cta-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(168, 85, 247, 0.2));
+  border-color: #00f5ff;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.25);
+  transform: translateY(-2px);
+}
+.cta-arrow                  { transition: transform 0.3s ease; }
+.cta-btn:hover .cta-arrow   { transform: translateX(4px); }
+
+/* ── 13. Feature List Items ───────────────────────────────── */
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.fi-cyan   { background: rgba(0, 245, 255, 0.1);   border: 1px solid rgba(0, 245, 255, 0.3); }
+.fi-purple { background: rgba(168, 85, 247, 0.1);  border: 1px solid rgba(168, 85, 247, 0.3); }
+.fi-pink   { background: rgba(244, 114, 182, 0.1); border: 1px solid rgba(244, 114, 182, 0.3); }
+
+/* ── 14. Stats Grid ───────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-box {
+  background: rgba(0, 245, 255, 0.04);
+  border: 1px solid rgba(0, 245, 255, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00f5ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Space Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* ── 15. Contact Form ─────────────────────────────────────── */
+.contact-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  color: #e2e8f0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+.contact-input:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.1);
+}
+.contact-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+textarea.contact-input       { resize: none; height: 90px; }
+
+/* ── 16. Fixed HUD — Top Nav ──────────────────────────────── */
+#hud-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background: linear-gradient(180deg, rgba(5, 5, 16, 0.9) 0%, transparent 100%);
+}
+
+.logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  background: linear-gradient(90deg, #00f5ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links             { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+  color: rgba(226, 232, 240, 0.55);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.nav-links a:hover     { color: #00f5ff; }
+
+/* ── 17. Scroll Progress Bar ──────────────────────────────── */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #a855f7, #f472b6);
+  z-index: 200;
+  box-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
+}
+
+/* ── 18. Chapter Dot Indicator ────────────────────────────── */
+#chapter-indicator {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.chapter-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.chapter-dot.active {
+  background: #00f5ff;
+  box-shadow: 0 0 10px #00f5ff, 0 0 20px rgba(0, 245, 255, 0.4);
+  transform: scale(1.4);
+}
+
+/* ── 19. Scroll Hint ──────────────────────────────────────── */
+#scroll-hint {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+#scroll-hint.hidden    { opacity: 0; pointer-events: none; }
+
+.scroll-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+.scroll-wheel {
+  width: 3px;
+  height: 7px;
+  border-radius: 2px;
+  background: #00f5ff;
+  animation: swheeel 1.8s infinite;
+}
+@keyframes swheeel {
+  0%   { transform: translateY(0);    opacity: 1; }
+  80%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 0; }
+}
+
+/* ── 20. Hero Title (fixed, fades on scroll) ──────────────── */
+#hero-title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0; /* GSAP animates in after loading */
+}
+.hero-main {
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.85;
+  background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 35%, #a855f7 70%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 60px rgba(0, 245, 255, 0.25));
+}
+.hero-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(165, 243, 252, 0.65);
+  margin-top: 1.5rem;
+}
+
+/* ── 21. Loading Screen ───────────────────────────────────── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #050510;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.loading-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  background: linear-gradient(90deg, #00f5ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.loading-bar-track {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #a855f7);
+  border-radius: 2px;
+  transition: width 0.1s ease;
+}
+.loading-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── 22. CSS Floating Particles ───────────────────────────── */
+.css-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatp linear infinite;
+  z-index: 1;
+}
+@keyframes floatp {
+  0%   { transform: translateY(100vh) translateX(0) scale(0);           opacity: 0; }
+  10%  {                                                                  opacity: 1; }
+  90%  {                                                                  opacity: 0.6; }
+  100% { transform: translateY(-20vh) translateX(var(--drift)) scale(1); opacity: 0; }
+}
