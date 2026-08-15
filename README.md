@@ -1,13 +1,3 @@
-<p align="center">
-  <a href="https://github.com/igsatvik">
-    <img src="https://capsule-render.vercel.app/api?type=transparent&fontColor=39d353&fontSize=54&height=90&width=858&text=Hello!%20I'm%20Satvik%20Mishra" alt="Hello! I&#39;m Satvik Mishra" />
-  </a>
-</p>
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Caveat&weight=600&size=26&pause=1000&color=708238&center=true&vCenter=true&width=415&height=44&lines=Game%20Developer%20%7C%20AI%26ML'29;Core%20Programmer" alt="Typing headlines" />
-</p>
-
 ### 🚀 About Me
 
 I build dynamic and immersive game worlds, using my technical skills to craft engaging experiences.
