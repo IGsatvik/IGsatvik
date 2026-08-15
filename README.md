@@ -1,6 +1,6 @@
 # Hi, I'm Satvik Mishra 👋
 
-**Computer Science & Mathematics Undergrad | Systems, Web & Game Developer**
+**Artificial Intelligence & Machine Learning Undergrad | Systems, Web & Game Developer**
 
 I build performant systems, full-stack applications, and interactive game environments. Combining mathematical rigor with hands-on prototyping, I focus on building efficient, scalable software—from low-level systems and IoT prototypes to modern web applications.
 
