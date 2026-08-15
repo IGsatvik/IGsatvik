@@ -39,7 +39,6 @@ I build performant systems, full-stack applications, and interactive game enviro
 ### 📊 Activity & Stats
 
 <div align="center">
-  <img height="160" src="https://github-readme-stats-sigma-five.vercel.app/api?username=igsatvik&show_icons=true&theme=tokyonight&title_color=39d353&icon_color=39d353&hide_border=true&bg_color=00000000&count_private=true" alt="Satvik's GitHub Stats" />
   <img height="160" src="https://github-readme-stats-five-sigma-99.vercel.app/api/top-langs/?username=igsatvik&layout=compact&theme=tokyonight&title_color=39d353&icon_color=39d353&hide_border=true&bg_color=00000000&langs_count=6" alt="Top Languages" />
 </div>
 
