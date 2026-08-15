@@ -8,10 +8,10 @@ I build performant systems, full-stack applications, and interactive game enviro
 
 ### 📌 Highlights
 
-- 🎓 **Academics:** 2nd Year B.Tech in Computer Science and Mathematics
+- 🎓 **Academics:** 2nd Year B.Tech in AI&ML, CGPA:9.11
 - 🔭 **Current Focus:** Embedded Systems, IoT architecture, and Full-Stack Engineering
-- 🎮 **Passions:** Game Engine Development & Creative Computing
-- 💼 **Looking For:** Internships in Embedded Systems, IoT, or Full-Stack Web Development
+- 🎮 **Passions:** Game Development & Creative Computing
+- 💼 **Looking For:** Internships in Embedded Systems, Game Development, or Full-Stack Web Development
 
 ---
 
