@@ -41,7 +41,6 @@ I build performant systems, full-stack applications, and interactive game enviro
 <div align="center">
   <img height="160" src="https://github-readme-stats-five-sigma-99.vercel.app/api/top-langs/?username=igsatvik&layout=compact&theme=tokyonight&title_color=39d353&icon_color=39d353&hide_border=true&bg_color=00000000&langs_count=6" alt="Top Languages" />
 </div>
----
 
 ### 📬 Connect With Me
 
